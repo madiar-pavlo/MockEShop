@@ -1,6 +1,6 @@
 import ErrorPage from '@pages/main/error/ErrorPage';
 import ProductList from '@UI/ProductUI/ProductsList/ProductsList';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import CatalogSkeleton from '@UI/MainUI/Skeletons/CatalogSkeleton';
 import {
   useGetAllProductsQuery,
@@ -37,12 +37,9 @@ const Products = () => {
     productsCount: pageLimit,
   });
   const { data: countOfProducts } = useGetProductsCountQuery();
-  const {
-    data: allProducts,
-    isLoading: IsAllProductsLoading,
-    isFetching: isAllProductsFetching,
-  } = useGetAllProductsQuery({
-    options: {
+
+  const queryParams = useMemo(
+    () => ({
       category: searchParams.get('category'),
       name: debouncedSearch.toUpperCase() ?? undefined,
       price: searchParams.get('price')
@@ -51,8 +48,15 @@ const Products = () => {
             ?.split(',')
             .map((i) => Number(i))
         : undefined,
-    },
-  });
+    }),
+    [debouncedSearch, searchParams, isWantToFilter]
+  );
+
+  const {
+    data: allProducts,
+    isLoading: IsAllProductsLoading,
+    isFetching: isAllProductsFetching,
+  } = useGetAllProductsQuery({ options: queryParams });
   useObserver({
     canLoad,
     isFetching,
@@ -74,11 +78,7 @@ const Products = () => {
   if (error) {
     return <ErrorPage />;
   }
-  if (
-    data &&
-    !isWantToFilter &&
-    !isParams
-  ) {
+  if (data && !isWantToFilter && !isParams) {
     const { products } = data;
     return (
       <>
@@ -89,7 +89,7 @@ const Products = () => {
             height: '50px',
             position: 'absolute',
             bottom: '-100px',
-            width: '1px'
+            width: '1px',
           }}
         ></div>
       </>

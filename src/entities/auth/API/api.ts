@@ -1,8 +1,11 @@
 import { baseApi } from '@services/RTKQuery/api';
+import { SessionResponse } from '@services/Supabase/supabase.types';
 import {
+  AuthError,
   SignInWithPasswordCredentials,
   SignUpWithPasswordCredentials,
 } from '@supabase/supabase-js';
+import { GetSessionResponse } from './types';
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (create) => ({
@@ -11,6 +14,14 @@ const authApi = baseApi.injectEndpoints({
         method: 'login',
         body: loginCredentials,
       }),
+      transformErrorResponse(returnError) {
+        console.log('SIGN UP returnError: ', returnError);
+        if ('code' in returnError.error) {
+          if (returnError.error.code) {
+            return returnError.error.code as string;
+          }
+        }
+      },
       invalidatesTags: [{ type: 'Auth' }],
     }),
     googleLogin: create.mutation({
@@ -24,6 +35,15 @@ const authApi = baseApi.injectEndpoints({
         method: 'register',
         body: signUpCredentials,
       }),
+
+      transformErrorResponse: (returnError) => {
+        console.log('SIGN UP returnError: ', returnError);
+        if ('code' in returnError.error) {
+          if (returnError.error.code) {
+            return returnError.error.code as string;
+          }
+        }
+      },
     }),
     logout: create.mutation({
       query: () => ({
@@ -31,7 +51,7 @@ const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Auth' }],
     }),
-    getSession: create.query({
+    getSession: create.query<GetSessionResponse, void>({
       query: () => ({
         method: 'getSession',
       }),
@@ -40,13 +60,13 @@ const authApi = baseApi.injectEndpoints({
           if ('session' in response) {
             const { session } = response;
             return {
-              data: {
-                session,
-                isAuth: Boolean(session),
-              },
+              session,
+              isAuth: Boolean(session),
             };
           }
+          throw new Error('Response doesnt have session')
         }
+        throw new Error('Response doesnt exist')
       },
       providesTags: [{ type: 'Auth' }],
     }),
@@ -63,5 +83,10 @@ export const {
 export const {
   getSession: { initiate: APIGetSession },
   login: { initiate: APILoginUser, select: APIGetLoginState },
+  register: { initiate: APIRegisterUser },
   googleLogin: { initiate: APIGoogleLogin },
 } = authApi.endpoints;
+
+export type RegisterUserMutation = ReturnType<typeof useRegisterMutation>[0];
+
+export type LoginUserMutation = ReturnType<typeof useLoginMutation>[0];

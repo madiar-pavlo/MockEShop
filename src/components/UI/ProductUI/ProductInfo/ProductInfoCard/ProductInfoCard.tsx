@@ -25,6 +25,9 @@ import { useAppContext } from '@utils/global-hooks/useAppContext';
 import { insertCartItem } from '@entities/cart/model/inserCartItem';
 import { useAppDispatch } from '@app/store';
 import { useEffect, useState } from 'react';
+import { useGetSessionQuery } from '@entities/auth/API/api';
+import { useNavigate } from 'react-router-dom';
+import ErrorPage from '@pages/main/error/ErrorPage';
 
 const ProductInfoCard = ({
   sizes,
@@ -43,6 +46,10 @@ const ProductInfoCard = ({
     quantity,
     setQuantity,
   } = useAppContext<TProductInfoContext>(ProductInfoContext);
+
+  const { data, error } = useGetSessionQuery();
+
+  const navigate = useNavigate();
 
   const [productPrice, setProductPrice] = useState(product.price.toFixed(2));
   const dispatch = useAppDispatch();
@@ -89,104 +96,113 @@ const ProductInfoCard = ({
           quantity: Number(quantity),
         })
       );
-      console.log('Added to cart');
-      console.log('Selected Size: ', selectedSize);
-      console.log('Selected Variant: ', selectedVariant.id);
     }
   };
 
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        height: 'min-content',
-        width: {
-          lg: 'auto',
-          md: 'min-content',
-          xs: 'min-content',
-        },
-      }}
-    >
-      <Card
+  if (error) {
+    return <ErrorPage />;
+  }
+
+  if (data) {
+    const { isAuth } = data;
+    return (
+      <Box
         sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'column', lg: 'row' },
+          justifyContent: 'center',
+          height: 'min-content',
+          width: '100%',
         }}
       >
-        <ProductInfoCardMedia product={product} />{' '}
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <CardContent sx={{ flex: 1 }}>
-            <Typography variant='h4' gutterBottom>
-              {product.name}
-            </Typography>
-            <Typography variant='h5' color='primary' gutterBottom>
-              ${productPrice}
-            </Typography>
-            <Typography variant='body1' color='textSecondary' paragraph>
-              {product.description ?? 'No description available.'}
-            </Typography>
-            <Typography variant='body2' color='textSecondary'>
-              Category:{' '}
-              {product.category === 'OutsideCategory'
-                ? 'Outside Category'
-                : product?.category}
-            </Typography>
-
-            <Divider sx={{ my: 2 }} />
-            <ProductColorsBar variants={variants} />
-
-            <Divider sx={{ my: 2 }} />
-            <ProductSizeBar sizes={sizes} />
-
-            <Divider sx={{ my: 2 }} />
-            <Box>
-              <Typography variant='body1' gutterBottom>
-                Select Quantity: {chooseQuantity}
+        <Card
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'column', lg: 'row' },
+            width: {
+              lg: 'auto',
+              md: 'min-content',
+              xs: 'min-content',
+            },
+          }}
+        >
+          <ProductInfoCardMedia product={product} />{' '}
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ flex: 1 }}>
+              <Typography variant='h4' gutterBottom>
+                {product.name}
               </Typography>
-              <Tooltip
-                title={'To choose quantity please choose size and/or color'}
-              >
-                <Input
-                  inputMode='numeric'
-                  value={quantity}
-                  placeholder={`max. quantity: ${maxQuantity}`}
-                  disabled={!maxQuantity}
-                  onChange={(event) => {
-                    const inputValue = event.target.value;
-                    const newValue = inputValue?.replace(/\D/g, '');
-                    if (Number(newValue) <= maxQuantity) {
-                      setQuantity(newValue);
-                    } else {
-                      setQuantity(maxQuantity.toString());
-                    }
-                  }}
-                />
-              </Tooltip>
-            </Box>
-          </CardContent>
-          <CardActions sx={{ display: 'flex', justifyContent: 'end' }}>
-            <Tooltip
-              title={`To add product to cart you should choose product's color OR/AND variant`}
-            >
-              <div>
-                <Button
-                  variant='outlined'
-                  size='large'
-                  onClick={() => {
-                    onClick();
-                  }}
-                  disabled={addedToCartDisabledOn}
+              <Typography variant='h5' color='primary' gutterBottom>
+                ${productPrice}
+              </Typography>
+              <Typography variant='body1' color='textSecondary' paragraph>
+                {product.description ?? 'No description available.'}
+              </Typography>
+              <Typography variant='body2' color='textSecondary'>
+                Category:{' '}
+                {product.category === 'OutsideCategory'
+                  ? 'Outside Category'
+                  : product?.category}
+              </Typography>
+
+              <Divider sx={{ my: 2 }} />
+              <ProductColorsBar variants={variants} />
+
+              <Divider sx={{ my: 2 }} />
+              <ProductSizeBar sizes={sizes} />
+
+              <Divider sx={{ my: 2 }} />
+              <Box>
+                <Typography variant='body1' gutterBottom>
+                  Select Quantity: {chooseQuantity}
+                </Typography>
+                <Tooltip
+                  title={'To choose quantity please choose size and/or color'}
                 >
-                  Add to cart
-                </Button>
-              </div>
-            </Tooltip>
-          </CardActions>
-        </Box>
-      </Card>
-    </Box>
-  );
+                  <Input
+                    inputMode='numeric'
+                    value={quantity}
+                    placeholder={`max. quantity: ${maxQuantity}`}
+                    disabled={!maxQuantity}
+                    onChange={(event) => {
+                      const inputValue = event.target.value;
+                      const newValue = inputValue?.replace(/\D/g, '');
+                      if (Number(newValue) <= maxQuantity) {
+                        setQuantity(newValue);
+                      } else {
+                        setQuantity(maxQuantity.toString());
+                      }
+                    }}
+                  />
+                </Tooltip>
+              </Box>
+            </CardContent>
+            <CardActions sx={{ display: 'flex', justifyContent: 'end' }}>
+              <Tooltip
+                title={`To add product to cart you should choose product's color OR/AND variant`}
+              >
+                <div>
+                  <Button
+                    variant='outlined'
+                    size='large'
+                    onClick={() => {
+                      if (isAuth) {
+                        onClick();
+                      } else {
+                        navigate('/auth/login');
+                      }
+                    }}
+                    disabled={addedToCartDisabledOn}
+                  >
+                    Add to cart
+                  </Button>
+                </div>
+              </Tooltip>
+            </CardActions>
+          </Box>
+        </Card>
+      </Box>
+    );
+  }
 };
 
 export default ProductInfoCard;

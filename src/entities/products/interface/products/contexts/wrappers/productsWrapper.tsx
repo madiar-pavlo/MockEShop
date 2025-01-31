@@ -10,7 +10,7 @@ const ProductsWrapper = () => {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
   const [isOutsideCategory, setIsOutsideCategory] = useState(false);
-  const debouncedSearch = useDebounce<string>(search, 500);
+  const debouncedSearch = useDebounce<string>(search, 900);
   const [isPriceFilterActive, setIsPriceFilterActive] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();

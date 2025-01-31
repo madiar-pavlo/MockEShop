@@ -23,6 +23,10 @@ export type AuthMutationMethodNames =
 
 export type AuthQueriesMethodNames = 'getSession';
 
+export type GetSessionResponse = SessionResponse['data'] & {
+  isAuth: boolean
+}
+
 export type AuthAPIBodies =
   | SignInWithPasswordCredentials
   | SignUpWithPasswordCredentials;

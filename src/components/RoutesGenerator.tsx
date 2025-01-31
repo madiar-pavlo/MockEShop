@@ -78,7 +78,7 @@ const privateRoutes = () => {
 };
 
 const RoutesGenerator = () => {
-  const { data, isLoading, error } = useGetSessionQuery({});
+  const { data, isLoading, error } = useGetSessionQuery();
   const { data: cartItems, error: cartItemsError } = useGetCartItemsQuery();
 
   if (isLoading) {
@@ -90,7 +90,7 @@ const RoutesGenerator = () => {
   }
   if (data && cartItems) {
     const {
-      data: { isAuth },
+      isAuth
     } = data;
     return (
       <Routes>

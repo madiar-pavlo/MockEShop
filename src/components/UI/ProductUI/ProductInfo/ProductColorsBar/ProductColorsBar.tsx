@@ -29,6 +29,7 @@ const ProductColorsBar = ({ variants }: Props) => {
   ) : (
     <span style={{ color: 'red' }}>choose color please *</span>
   );
+  
   useEffect(() => {
     if (color) {
       const avaliableVariants = variants.filter((item) => item.count >= 1);

@@ -29,7 +29,7 @@ import {
 
 const Navbar = () => {
   const [logout] = useLogoutMutation();
-  const { data, error } = useGetSessionQuery({});
+  const { data, error } = useGetSessionQuery();
   const { data: cartItems, error: cartItemsError } = useGetCartItemsQuery();
 
   const onSignOutClick = () => {
@@ -64,9 +64,7 @@ const Navbar = () => {
   }
 
   if (data && cartItems) {
-    const {
-      data: { isAuth },
-    } = data;
+    const { isAuth } = data;
     const cartItemsCount = cartItems.length;
     console.log('Cart Items: ', cartItems);
     return (
@@ -154,12 +152,16 @@ const Navbar = () => {
               </Button>
             )}
 
-            <IconButton color='inherit' onClick={handleMenuOpen} sx={{
-              display: {
-                xs: 'inline-flex',
-                md: 'none'
-              }
-            }}>
+            <IconButton
+              color='inherit'
+              onClick={handleMenuOpen}
+              sx={{
+                display: {
+                  xs: 'inline-flex',
+                  md: 'none',
+                },
+              }}
+            >
               {menuEl ? <MenuOpenIcon /> : <MenuIcon />}
             </IconButton>
           </Box>

@@ -2,35 +2,9 @@ import { Container, keyframes } from '@mui/material';
 import RoutesGenerator from '../RoutesGenerator';
 import Navbar from './Navbar/Navbar';
 import AppBox from '@UI/MainUI/AppBox/AppBox';
-import { useEffect, useReducer, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+import Footer from './Footer/Footer';
 
 const Layout = () => {
-  // const location = useLocation();
-  // const [path, setPath] = useState('');
-  // const [_, forceUpdate] = useReducer(x => x + 1, 0)
-
-  // useEffect(() => {
-  //   if (location.pathname !== path) {
-  //     setPath(location.pathname);
-      
-  //     const timeout = setTimeout(() => {
-  //       forceUpdate()
-  //     }, 500)
-
-  //     clearTimeout(timeout)
-  //   }
-  // }, [location.pathname, path]);
-
   return (
     <>
       <Navbar />
@@ -40,11 +14,10 @@ const Layout = () => {
         sx={{
           display: 'flex',
           marginTop: '80px',
+          minHeight: '83vh',
           paddingInline: {
             xs: '0px',
           },
-          // opacity: 0,
-          // animation: `${fadeIn} 1s ease-in-out forwards`,
         }}
       >
         <AppBox
@@ -58,6 +31,7 @@ const Layout = () => {
           <RoutesGenerator />
         </AppBox>
       </Container>
+      <Footer />
     </>
   );
 };

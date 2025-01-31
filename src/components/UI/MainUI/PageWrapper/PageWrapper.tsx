@@ -16,6 +16,7 @@ const PageWrapper = ({ children }: { children: ReactNode }) => {
     <Box
       sx={{ 
         width: '100%',
+        display: 'flex',
         opacity: 0,
         animation: `${fadeIn} 0.5s ease-in-out forwards`,
       }}

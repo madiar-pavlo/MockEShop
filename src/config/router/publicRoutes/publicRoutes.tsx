@@ -5,6 +5,9 @@ const LoginPage = lazy(() => import('@pages/auth/login/LoginPage'));
 const HomePage = lazy(() => import('@pages/main/home/HomePage'));
 const RegisterPage = lazy(() => import('@pages/auth/register/RegisterPage'));
 const NotFoundPage = lazy(() => import('@pages/main/notFound/NotFoundPage'));
+const WaitingEmailConfirmPage = lazy(
+  () => import('@pages/auth/waitingEmailConfirm/WaitingEmailConfirmPage')
+);
 
 export const mainRoutes: RouteObject[] = [
   {
@@ -29,5 +32,9 @@ export const publicAuthRoutes: RouteObject[] = [
   {
     path: 'register',
     element: <RegisterPage />,
+  },
+  {
+    path: 'email-confirm/:userEmail',
+    element: <WaitingEmailConfirmPage />,
   },
 ];

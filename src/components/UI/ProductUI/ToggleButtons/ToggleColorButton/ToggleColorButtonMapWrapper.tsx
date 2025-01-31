@@ -5,17 +5,15 @@ import {
   ProductInfoContext,
   TProductInfoContext,
 } from '@entities/products/interface/products/contexts/productInfoContext';
-import { useEffect } from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
+
 
 interface Properties {
   colorMap: Record<string, string>;
   variant: ProductVariant;
 }
 
-const ToggleColorButtonMapWrapper = ({
-  colorMap,
-  variant,
-}: Properties) => {
+const ToggleColorButtonMapWrapper = ({ colorMap, variant }: Properties) => {
   const {
     onColorChange,
     selectedColor,
@@ -34,13 +32,17 @@ const ToggleColorButtonMapWrapper = ({
       }
     }
   }, [variant]);
+
+  const memoOnColorChange = useCallback(() => {
+    onColorChange(variant);
+  }, [onColorChange, variant]);
   if (variant.color) {
     const color = colorMap[variant?.color];
     return (
       <ToggleColorButton
         color={color}
         variant={variant}
-        onChange={() => onColorChange(variant)}
+        onChange={() => memoOnColorChange()}
         selected={selectedColor === variant.color}
         disabled={
           variant.count === 0 || !colorImageLoaded || !swiperImageLoaded
@@ -50,4 +52,4 @@ const ToggleColorButtonMapWrapper = ({
   }
 };
 
-export default ToggleColorButtonMapWrapper;
+export default memo(ToggleColorButtonMapWrapper);

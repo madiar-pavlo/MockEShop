@@ -7,7 +7,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 const AuthLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { data, isLoading, error } = useGetSessionQuery({});
+  const { data, isLoading, error } = useGetSessionQuery();
 
   if (isLoading) {
     return <Loader />;
@@ -16,9 +16,7 @@ const AuthLayout = () => {
     return <NotFoundPage />;
   }
   if (data) {
-    const {
-      data: { isAuth },
-    } = data;
+    const { isAuth } = data;
     if (location.pathname === '/auth' && !isAuth) {
       return (
         <Box

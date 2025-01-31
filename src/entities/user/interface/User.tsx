@@ -103,6 +103,7 @@ const User = () => {
                 <HistoryIcon /> <Typography variant='h6'>History: </Typography>
               </Box>
               <Divider sx={{ mb: 2 }} />
+              {orders.length === 0 && <Typography variant='h6'>No Orders...</Typography>}
               {orders.map((order) => (
                 <Box key={order.id}>
                   <ListItem

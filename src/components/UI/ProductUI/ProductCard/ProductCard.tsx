@@ -26,7 +26,7 @@ const ProductCard = ({ product }: { product: Product | undefined }) => {
         flex: '1 1 300px',
         maxWidth: {
           xs: '230px',
-          sm: '250px'
+          sm: '250px',
         },
         transition: 'transform 0.3s, box-shadow 0.3s', // Анимация при наведении
         ':hover': {
@@ -37,9 +37,21 @@ const ProductCard = ({ product }: { product: Product | undefined }) => {
         flexDirection: 'column',
       }}
     >
-      <div style={{ position: 'relative', width: '100%' }}>
+      <div style={{ position: 'relative', width: '100%', height: '320px' }}>
         {/* Скелетон до загрузки изображения */}
 
+        <Skeleton
+          variant='rectangular'
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            paddingBottom: '56.25%',
+            display: imageLoaded ? 'none' : 'block',
+          }}
+        />
         {/* Слайдер с изображениями */}
         <Swiper
           modules={[Navigation, Pagination]}
@@ -52,19 +64,6 @@ const ProductCard = ({ product }: { product: Product | undefined }) => {
         >
           {product?.image_urls.map((url, index) => (
             <SwiperSlide key={index}>
-              {!imageLoaded && (
-                <Skeleton
-                  variant='rectangular'
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    paddingBottom: '56.25%', // Соотношение 16:9 для картинок
-                  }}
-                />
-              )}
               <CardMedia
                 component='img'
                 image={url}
@@ -74,10 +73,10 @@ const ProductCard = ({ product }: { product: Product | undefined }) => {
                   height: 'auto',
                   objectFit: 'cover', // Обрезка по размеру
                   borderRadius: '4px 4px 0 0', // Края закруглены сверху
-                  transition: 'opacity 0.3s ease',
+                  transition: 'opacity 2.5s ease',
                   opacity: imageLoaded ? 1 : 0, // Плавное появление
                 }}
-                onLoad={() => setImageLoaded(true)} // Убираем скелетон после загрузки
+                onLoad={() => setImageLoaded(true)}
               />
             </SwiperSlide>
           ))}

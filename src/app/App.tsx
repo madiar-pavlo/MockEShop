@@ -25,6 +25,7 @@ const theme = createTheme({
           minHeight: '100vh',
           display: 'flex',
           justifyContent: 'center',
+          flexDirection: 'column',
           alignItems: 'stretch',
         },
       },
@@ -48,7 +49,7 @@ const theme = createTheme({
 });
 
 const App = () => {
-  const { isLoading, error } = useGetSessionQuery({});
+  const { isLoading, error } = useGetSessionQuery();
 
   if (isLoading) {
     return <Loader />;
@@ -60,7 +61,7 @@ const App = () => {
     return (
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Layout />;
+        <Layout />
       </ThemeProvider>
     );
   }

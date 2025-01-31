@@ -1,6 +1,6 @@
 import { Box, Skeleton } from '@mui/material';
 
-const CatalogSkeleton = () => {
+const CatalogSkeleton = ({skeletonsCount = 6}: {skeletonsCount?: number}) => {
   return (
     <Box
       sx={{
@@ -11,7 +11,7 @@ const CatalogSkeleton = () => {
       }}
     >
       {/* Skeleton для загрузки карточек продуктов */}
-      {[...Array(6)].map((_, index) => (
+      {[...Array(skeletonsCount)].map((_, index) => (
         <Skeleton
           key={index}
           variant='rectangular'

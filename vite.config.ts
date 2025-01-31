@@ -18,6 +18,7 @@ export default defineConfig({
       '@UI': path.resolve(__dirname, './src/components/UI'),
       '@appTypes': path.resolve(__dirname, './src/types'),
       '@utils': path.resolve(__dirname, './src/utils'),
+      '@media': path.resolve(__dirname, './src/media'),
     },
   },
 });

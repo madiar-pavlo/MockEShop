@@ -15,7 +15,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-
     "typeRoots": ["./node_modules/@types", "./src/types"],
 
     /* Linting */
@@ -24,7 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    
+
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["src/assets/*"],
@@ -38,7 +37,8 @@
       "@UI/*": ["src/components/UI/*"],
       "@appTypes/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
-    },
+      "@media/*": ["src/media/*"]
+    }
   },
   "include": ["src/**/*", "DEV"]
 }

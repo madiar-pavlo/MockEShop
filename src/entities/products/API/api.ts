@@ -71,17 +71,14 @@ const productApi = baseApi.injectEndpoints({
             console.log('Price: ', price);
             const filters: ((item: Product) => boolean)[] = [];
             if (category) {
-              console.log('Category Exist: ', category);
               filters.push((item) => item.category === category);
             }
             if (price) {
-              console.log('Price Exist: ', price);
               filters.push(
                 (item) => item.price > price[0] && item.price < price[1]
               );
             }
             if (name) {
-              console.log('Name Exist: ', name);
               filters.push((item) =>
                 item.name.toUpperCase().includes(name?.toUpperCase() ?? '')
               );
@@ -105,6 +102,15 @@ const productApi = baseApi.injectEndpoints({
     //     method: 'getAllProducts'
     //   })
     // }),
+    getPreviewProducts: create.query<(Product | undefined)[], void>({
+      query: () => ({
+        method: 'getProducts',
+        body: {
+          page: 1,
+          productsCount: 3,
+        },
+      }),
+    }),
     getProductsCount: create.query<GetProductcCountResponse['data'], void>({
       query: () => ({
         method: 'getProductsCount',
@@ -168,6 +174,7 @@ const productApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useGetPreviewProductsQuery,
   useGetProductsListQuery,
   useGetProductByIdQuery,
   useGetProductsCountQuery,
@@ -181,8 +188,7 @@ export const {
   useLazyGetProductVariantsQuery,
 } = productApi;
 
-
 export const {
-  changeProductSize: { initiate: APIChangeProductSize},
-  changeProductVariant: {initiate: APIChangeProductVariant}
-} = productApi.endpoints
+  changeProductSize: { initiate: APIChangeProductSize },
+  changeProductVariant: { initiate: APIChangeProductVariant },
+} = productApi.endpoints;
