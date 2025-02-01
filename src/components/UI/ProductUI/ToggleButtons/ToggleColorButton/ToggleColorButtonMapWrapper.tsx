@@ -5,7 +5,7 @@ import {
   ProductInfoContext,
   TProductInfoContext,
 } from '@entities/products/interface/products/contexts/productInfoContext';
-import { memo, useCallback, useEffect, useMemo } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 
 
 interface Properties {

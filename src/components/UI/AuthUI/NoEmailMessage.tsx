@@ -1,6 +1,5 @@
 import { Container, Typography, Box } from '@mui/material';
 import StyledLink from '@UI/MainUI/NavigationUI/StyledLink';
-import { useNavigate } from 'react-router-dom';
 
 import { Link as RouterLink } from 'react-router-dom';
 

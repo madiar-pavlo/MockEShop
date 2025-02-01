@@ -8,20 +8,34 @@ export type FeatureDescription = {
 
 const featuresDescription: FeatureDescription[] = [
   {
-    title: 'Affordable Prices',
-    description: 'Competitive prices without compromising quality.',
+    title: 'Mock Shopping Experience',
+    description:
+      'Explore a fully functional mock store with no real transactions. Perfect for testing and learning!',
   },
   {
-    title: 'Fast Delivery',
-    description: 'Get your orders delivered fast and reliably.',
+    title: 'Email & OAuth Login',
+    description:
+      'Sign up with your email or Google account to save your mock purchase history.',
   },
   {
-    title: 'Secure Payments',
-    description: 'Your data is safe with us. Shop confidently.',
+    title: 'Wide Range of Mock Products',
+    description:
+      'Browse through mock clothing, bags, and even snowboards. It’s all virtual, but fun!',
   },
   {
-    title: 'Customer Support',
-    description: '24/7 support to assist you whenever you need.',
+    title: 'Mock Order History',
+    description:
+      'Track your mock purchases and see what you’ve “bought” in the past.',
+  },
+  {
+    title: 'Interactive Features',
+    description:
+      'Add items to your cart, apply filters, and enjoy a seamless mock shopping experience.',
+  },
+  {
+    title: 'No Real Payments',
+    description:
+      'Shop worry-free—no real money is involved. It’s all just for fun and practice!',
   },
 ];
 

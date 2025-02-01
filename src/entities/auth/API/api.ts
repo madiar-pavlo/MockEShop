@@ -1,7 +1,5 @@
 import { baseApi } from '@services/RTKQuery/api';
-import { SessionResponse } from '@services/Supabase/supabase.types';
 import {
-  AuthError,
   SignInWithPasswordCredentials,
   SignUpWithPasswordCredentials,
 } from '@supabase/supabase-js';

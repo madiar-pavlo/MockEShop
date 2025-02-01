@@ -12,4 +12,6 @@ export const router = createBrowserRouter([
       }
     ]
   },
-]);
+],   {
+  basename: "/MockEShop", // Укажите название вашего репозитория
+});
