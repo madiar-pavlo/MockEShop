@@ -1,4 +1,4 @@
-import { Container, keyframes } from '@mui/material';
+import { Container } from '@mui/material';
 import RoutesGenerator from '../RoutesGenerator';
 import Navbar from './Navbar/Navbar';
 import AppBox from '@UI/MainUI/AppBox/AppBox';

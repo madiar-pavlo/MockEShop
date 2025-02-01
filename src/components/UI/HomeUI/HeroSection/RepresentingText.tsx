@@ -4,10 +4,10 @@ import TextWithBackground from '../TextWithBackground/TextWithBackground';
 const HEADER_TEXT = 'Welcome to MockEShop';
 
 const DESCRIPTION_TEXT2 =
-  'Discover the best deals on your favorite products. Convenient, fast, and secure shopping all in one place.';
-const DESCRIPTION_TEXT3 =
-  'From electronics to fashion, our platform offers a wide range of products at unbeatable prices. Shop now and enjoy exclusive offers, fast delivery, and top-notch customer service. Join us today!';
+  'Explore our mock store and discover a variety of clothing, bags, and even snowboards! Convenient, fast, and secure mock shopping all in one place.';
 
+const DESCRIPTION_TEXT3 =
+  'MockEShop is a demo platform where you can browse and "purchase" items like trendy clothes, stylish bags, and even snowboards (just for fun!). Sign up with your email or OAuth to save your purchase history and enjoy a seamless mock shopping experience. Join us today and experience the future of online shopping—mock style!';
 const RepresentingText = () => {
   return (
     <Box>

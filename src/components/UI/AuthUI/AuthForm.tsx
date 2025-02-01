@@ -53,7 +53,7 @@ const AuthForm = (props: IAuthFormProps) => {
 
   const [email, setEmail] = useState<TUserEmail>('');
   const [password, setPassword] = useState<TUserPassword>('');
-  const { isLoading: loading } = useGetSessionQuery({});
+  const { isLoading: loading } = useGetSessionQuery();
 
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 

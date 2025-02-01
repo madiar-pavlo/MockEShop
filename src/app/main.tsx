@@ -6,7 +6,7 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from '@app/router';
 import { APIGetSession } from '@entities/auth/API/api';
 
-store.dispatch(APIGetSession({}));
+store.dispatch(APIGetSession());
 
 createRoot(document.getElementById('root')!).render(
   // <StrictMode>

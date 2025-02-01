@@ -20,6 +20,7 @@
 2. Přepsat a lépe organizovat kód (některé komponenty nejsou úplně "čisté").
 3. Možná přejdu z RTK Query na **Tanstack Query** – uvidím, co bude lepší.
 4. Vytvořit Redux slice pro složitější logiku rozhraní, místo abych používal React Context API.
+5. Lokalizace: Přidat podporu pro více jazyků (například angličtinu a češtinu), aby byla platforma dostupnější pro širší publikum.
 
 ---
 

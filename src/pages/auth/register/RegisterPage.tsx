@@ -64,14 +64,15 @@ const RegisterPage = () => {
                   gutterBottom
                   sx={{ color: 'primary.main', fontWeight: 'bold' }}
                 >
-                  Welcome to Our Platform
+                  Welcome to MockEShop
                 </Typography>
                 <Typography
                   variant='body1'
                   sx={{ marginBottom: 2, color: 'text.secondary' }}
                 >
-                  Join our community to unlock exclusive features and benefits.
-                  Signing up is quick and easy!
+                  Join our mock store to explore a wide range of virtual
+                  products, from trendy clothes to stylish bags and even
+                  snowboards. Signing up is quick and easy!
                 </Typography>
                 <Typography
                   variant='h5'
@@ -83,7 +84,7 @@ const RegisterPage = () => {
                     color: 'primary.dark',
                   }}
                 >
-                  Why Choose Us?
+                  Why Join MockEShop?
                 </Typography>
                 <List>
                   <ListItem sx={{ padding: 0, marginBottom: 1 }}>
@@ -91,7 +92,8 @@ const RegisterPage = () => {
                       variant='body2'
                       sx={{ color: 'text.secondary' }}
                     >
-                      ✅ Exclusive access to premium content.
+                      ✅ Explore a variety of mock products in a risk-free
+                      environment.
                     </Typography>
                   </ListItem>
                   <ListItem sx={{ padding: 0, marginBottom: 1 }}>
@@ -99,7 +101,8 @@ const RegisterPage = () => {
                       variant='body2'
                       sx={{ color: 'text.secondary' }}
                     >
-                      ✅ Personalized recommendations tailored to your needs.
+                      ✅ Save your mock purchase history and track your
+                      "orders."
                     </Typography>
                   </ListItem>
                   <ListItem sx={{ padding: 0 }}>
@@ -107,7 +110,7 @@ const RegisterPage = () => {
                       variant='body2'
                       sx={{ color: 'text.secondary' }}
                     >
-                      ✅ A growing community of like-minded individuals.
+                      ✅ Enjoy a seamless and fun mock shopping experience.
                     </Typography>
                   </ListItem>
                 </List>
