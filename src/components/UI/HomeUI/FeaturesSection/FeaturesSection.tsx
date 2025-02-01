@@ -1,4 +1,4 @@
-import { Box, Grid2, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import FeatureCard from './FeatureCard';
 
 export type FeatureDescription = {
