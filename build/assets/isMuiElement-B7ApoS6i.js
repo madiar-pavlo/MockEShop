@@ -1,1 +1,0 @@
-import{i as m}from"./index-BvJZQbNX.js";function p(i,r){var a,t,e;return m.isValidElement(i)&&r.indexOf(i.type.muiName??((e=(t=(a=i.type)==null?void 0:a._payload)==null?void 0:t.value)==null?void 0:e.muiName))!==-1}export{p as i};
