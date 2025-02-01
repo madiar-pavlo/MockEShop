@@ -41,7 +41,7 @@ const featuresDescription: FeatureDescription[] = [
 
 const FeaturesSection = () => {
   return (
-    <Box>
+    <Box component={'section'}>
       <Typography
         variant='h4'
         sx={{
@@ -57,20 +57,11 @@ const FeaturesSection = () => {
       >
         Why Shop With Us?
       </Typography>
-      <Grid2 container spacing={4} justifyContent='center'>
+      <Box display='flex' justifyContent='center' flexWrap={'wrap'} gap={5}>
         {featuresDescription.map((featureDescription, index) => (
-          <Grid2
-            size={{
-              xs: 12,
-              sm: 6,
-              md: 3,
-            }}
-            key={index}
-          >
-            <FeatureCard featureDescription={featureDescription} />
-          </Grid2>
+          <FeatureCard key={index} featureDescription={featureDescription} />
         ))}
-      </Grid2>
+      </Box>
     </Box>
   );
 };

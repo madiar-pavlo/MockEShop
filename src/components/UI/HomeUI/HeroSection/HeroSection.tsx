@@ -10,7 +10,6 @@ const HeroSection = () => {
       sx={{
         width: '100%',
         height: '100vh',
-        maxWidth: '100vw',
         display: 'flex',
         position: 'absolute',
         marginTop: '50px',

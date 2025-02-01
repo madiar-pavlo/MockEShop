@@ -9,6 +9,7 @@ const FeatureCard = ({
   return (
     <Card
       sx={{
+        maxWidth: '300px',
         borderRadius: 2,
         boxShadow: 2,
         padding: 3,

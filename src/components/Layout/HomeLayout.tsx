@@ -9,12 +9,17 @@ const HomeLayout = () => {
       sx={{
         width: '100%',
         minHeight: '100vh',
+
+        maxWidth: '100vw',
         overflowY: 'auto',
         backgroundColor: '#f9f9f9',
       }}
     >
       <HeroSection />
-      <Box sx={{ padding: 6, marginTop: '100vh' }}>
+      <Box sx={{ padding: {
+        xs: 3,
+        sm: 6
+      }, marginTop: '100vh' }}>
         <PreviewProducts />
 
         <Divider sx={{ my: 6 }} />

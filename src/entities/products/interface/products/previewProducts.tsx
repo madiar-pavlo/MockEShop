@@ -38,14 +38,11 @@ const PreviewProducts = () => {
     );
   }
   return (
-    <>
-      {' '}
-      <Box sx={{ marginTop: '100vh' }}>
-        <Typography variant='h4' gutterBottom>
-          We have some problem with loading preview products
-        </Typography>
-      </Box>
-    </>
+    <Box component={'section'} sx={{ marginTop: '100vh' }}>
+      <Typography variant='h4' gutterBottom>
+        We have some problem with loading preview products
+      </Typography>
+    </Box>
   );
 };
 

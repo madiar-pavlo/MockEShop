@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     outDir: 'build',
   },
-  base: '/MockEShop/',
+  base: '/MockEShop',
   plugins: [react(), removeConsole()],
   resolve: {
     alias: {
