@@ -1,5 +1,7 @@
 # The Mock E-Shop 🛒
 
+Web: (https://madiar-pavlo.github.io/MockEShop/)
+
 **The Mock E-Shop** is a project created using the **React stack**:
 
 1. React
