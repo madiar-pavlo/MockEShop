@@ -1,5 +1,8 @@
 # The Mock E-Shop 🛒
 
+Web:  (https://madiar-pavlo.github.io/MockEShop/)
+
+
 ## Choose your language / Vyberte si jazyk:
 - [English 🇬🇧](README.en.md)
 - [Čeština 🇨🇿](README.cz.md)
