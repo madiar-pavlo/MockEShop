@@ -1,5 +1,7 @@
 # The Mock E-Shop 🛒
 
+Web: (https://madiar-pavlo.github.io/MockEShop/)
+
 **The Mock E-Shop** je projekt, který jsem vytvořil pomocí **React stacku**. Chtěl jsem si vyzkoušet moderní technologie a zároveň si zlepšit své dovednosti ve vývoji webových aplikací. Tento projekt ukazuje, co všechno umím:
 - Pracovat s externími SDK
 - Komunikovat s backendem
